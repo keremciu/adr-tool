@@ -6,7 +6,7 @@ easy CLI for ADR docs
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/adr-tool.svg)](https://npmjs.org/package/adr-tool)
 [![Downloads/week](https://img.shields.io/npm/dw/adr-tool.svg)](https://npmjs.org/package/adr-tool)
-[![License](https://img.shields.io/npm/l/adr-tool.svg)](https://github.com/keremciu/adr-tool/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/adr-tool.svg)](https://github.com/keremciu/adr-tool/blob/main/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -48,7 +48,7 @@ EXAMPLE
   a decision created on ./docs/adr/0001-use-adr-tool.md
 ```
 
-_See code: [src/commands/create.ts](https://github.com/keremciu/adr-tool/blob/v0.0.8/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/keremciu/adr-tool/blob/v0.0.9/src/commands/create.ts)_
 
 ## `adr-tool help [COMMAND]`
 
@@ -83,7 +83,7 @@ EXAMPLE
   ./docs/adr folder is created!
 ```
 
-_See code: [src/commands/init.ts](https://github.com/keremciu/adr-tool/blob/v0.0.8/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/keremciu/adr-tool/blob/v0.0.9/src/commands/init.ts)_
 
 ## `adr-tool toc`
 
@@ -101,5 +101,5 @@ EXAMPLE
   ./docs/adr/README.md file is created!
 ```
 
-_See code: [src/commands/toc.ts](https://github.com/keremciu/adr-tool/blob/v0.0.8/src/commands/toc.ts)_
+_See code: [src/commands/toc.ts](https://github.com/keremciu/adr-tool/blob/v0.0.9/src/commands/toc.ts)_
 <!-- commandsstop -->

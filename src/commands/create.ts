@@ -98,6 +98,12 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
       }
     }
 
+    const decidersresponse: any = await inquirer.prompt([{
+      name: 'list',
+      message: 'list everyone involved in the decision',
+      type: 'input',
+    }])
+
     const date = new Date().toLocaleString()
 
     const raw = fs.readFileSync(templateFile, 'utf8')
@@ -120,15 +126,17 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
     const fileData = raw
     .replace(/\[short title of solved problem and solution\]/g, newIndex + ' - ' + args.title)
     .replace(/\[YYYY-MM-DD when the decision was last updated\]/g, date)
-    .replace(/\[proposed \| rejected \| accepted \| deprecated \| … \| superseded by \[ADR-0005\]\(0005-example.md\)\]/g, status)
-    .replace(/\[description \| ticket\/issue URL\]/g, ticket)
+    .replace(/\[accepted \| deprecated \| superseded by \[ADR-0005\]\(0005-example.md\)\]/g, status)
+
+    if (ticket) raw.replace(/\[description \| ticket\/issue URL\]/g, ticket)
+    if (decidersresponse.list) raw.replace(/\[list everyone involved in the decision\]/g, decidersresponse.list)
 
     const filePath = adrDir + filename + '.md'
     fs.writeFileSync(filePath, fileData)
 
     const tocFileRaw = fs.readFileSync(tocFilePath, 'utf8')
     const tocFileArray = tocFileRaw.split('\n')
-    const tocString = `* [ADR-${fileIndex}](${filename}.md) - ${args.title}`
+    const tocString = `* [ADR-${fileIndex}](${filename}.md) - ${args.title} - [${status}]`
     const tocStopIndex = tocFileArray.indexOf('<!-- tocstop -->')
     tocFileArray.splice(tocStopIndex - 1, 0, tocString)
 
