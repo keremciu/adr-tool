@@ -12,6 +12,16 @@ easy CLI for ADR docs
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+
+# Demo
+
+<p align="center">
+  <a href="https://youtu.be/lesHQoZ7qYY" title="Click to watch the full screencast">
+    <img src="demo.gif" alt="adr-tool demo" width="838" />
+  </a>
+</p>
+<p align="center"><a href="https://youtu.be/lesHQoZ7qYY">🎞️ Watch the full screencast</a></p>
+
 # Usage
 
 You can install it globally (`npm install -g adr-tool`) or use it with [npx](https://docs.npmjs.com/cli/v7/commands/npx)
