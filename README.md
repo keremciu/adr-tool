@@ -19,8 +19,7 @@ You can install it globally (`npm install -g adr-tool`) or use it with [npx](htt
 ```sh-session
 $ npx adr-tool init
 ./docs/adr folder is created!
-USAGE
-$ npx adr-tool create 'Use Markdown Architectural Decision Records'
+$ npx adr-tool create Use Markdown Architectural Decision Records
 a decision created on ./docs/adr/0000-use-markdown-architectural-decision-records.md
 ```
 # Commands
@@ -44,11 +43,11 @@ OPTIONS
   --status=accepted|deprecated|superseeded
 
 EXAMPLE
-  $ adr-tool create 'Use ADR Tool'
-  a decision created on ./docs/adr/0001-use-adr-tool.md
+  $ adr-tool create Use ADR Tool
+  a decision created on ./docs/adr/0000-use-adr-tool.md
 ```
 
-_See code: [src/commands/create.ts](https://github.com/keremciu/adr-tool/blob/v0.0.9/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/keremciu/adr-tool/blob/v0.1.0/src/commands/create.ts)_
 
 ## `adr-tool help [COMMAND]`
 
@@ -83,7 +82,7 @@ EXAMPLE
   ./docs/adr folder is created!
 ```
 
-_See code: [src/commands/init.ts](https://github.com/keremciu/adr-tool/blob/v0.0.9/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/keremciu/adr-tool/blob/v0.1.0/src/commands/init.ts)_
 
 ## `adr-tool toc`
 
@@ -101,5 +100,5 @@ EXAMPLE
   ./docs/adr/README.md file is created!
 ```
 
-_See code: [src/commands/toc.ts](https://github.com/keremciu/adr-tool/blob/v0.0.9/src/commands/toc.ts)_
+_See code: [src/commands/toc.ts](https://github.com/keremciu/adr-tool/blob/v0.1.0/src/commands/toc.ts)_
 <!-- commandsstop -->

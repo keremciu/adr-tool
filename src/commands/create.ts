@@ -37,8 +37,8 @@ export default class Create extends Command {
   static description = 'create a new decision and log it into docs/adr/README.md file'
 
   static examples = [
-    `$ adr-tool create 'Use ADR Tool'
-a decision created on ./docs/adr/0001-use-adr-tool.md
+    `$ adr-tool create Use ADR Tool
+a decision created on ./docs/adr/0000-use-adr-tool.md
 `,
   ]
 
@@ -52,19 +52,22 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
     }),
   }
 
-  static args = [{name: 'title'}]
+  static strict = false
+
+  static args = [{name: 'title', description: 'title of the decision'}]
 
   async run() {
-    const {args, flags} = this.parse(Create)
+    const {argv, flags} = this.parse(Create)
 
     if (!fs.existsSync(adrDir)) {
       error('docs/adr folder is not exist, please run `adr-tools init` command first.')
     }
 
-    if (!args.title) {
+    if (argv.length === 0) {
       error('please give a title for the decision')
     }
 
+    const title = argv.join(' ')
     let ticket = flags.ticket
 
     if (!ticket) {
@@ -108,7 +111,7 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
 
     const raw = fs.readFileSync(templateFile, 'utf8')
 
-    const cleanTitle = args.title.toLowerCase().trim()
+    const cleanTitle = title.toLowerCase().trim()
     .replace(/[\s_-]+/g, '-') // swap any length of whitespace, underscore, hyphen characters with a single _
     .replace(/^-+|-+$/g, '') // remove leading, trailing -
     .replace(/，/g, '')
@@ -124,7 +127,7 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
     const filename = fileIndex + '-' + cleanTitle
 
     const fileData = raw
-    .replace(/\[short title of solved problem and solution\]/g, newIndex + ' - ' + args.title)
+    .replace(/\[short title of solved problem and solution\]/g, newIndex + ' - ' + title)
     .replace(/\[YYYY-MM-DD when the decision was last updated\]/g, date)
     .replace(/\[accepted \| deprecated \| superseded by \[ADR-0005\]\(0005-example.md\)\]/g, status)
 
@@ -136,7 +139,7 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
 
     const tocFileRaw = fs.readFileSync(tocFilePath, 'utf8')
     const tocFileArray = tocFileRaw.split('\n')
-    const tocString = `* [ADR-${fileIndex}](${filename}.md) - ${args.title} - [${status}]`
+    const tocString = `* [ADR-${fileIndex}](${filename}.md) - ${title} - [${status}]`
     const tocStopIndex = tocFileArray.indexOf('<!-- tocstop -->')
     tocFileArray.splice(tocStopIndex - 1, 0, tocString)
 

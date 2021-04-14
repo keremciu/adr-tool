@@ -1,7 +1,7 @@
 {
   "name": "adr-tool",
   "description": "easy CLI for ADR docs",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "author": "Kerem Sevencan @keremciu",
   "bin": {
     "adr-tool": "./bin/run"
