@@ -3,6 +3,8 @@
 This log lists the architectural decisions for {project}.
 
 <!-- toc -->
+
+
 <!-- tocstop -->
 
 ---
