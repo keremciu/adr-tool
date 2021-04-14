@@ -13,16 +13,15 @@ easy CLI for ADR docs
 * [Commands](#commands)
 <!-- tocstop -->
 # Usage
+
+You can install it globally (`npm install -g adr-tool`) or use it with [npx](https://docs.npmjs.com/cli/v7/commands/npx)
+
 <!-- usage -->
 ```sh-session
-$ npm install -g adr-tool
-$ adr-tool COMMAND
-running command...
-$ adr-tool (-v|--version|version)
-adr-tool/0.0.5 darwin-x64 node-v14.16.0
-$ adr-tool --help [COMMAND]
+$ npx adr-tool init
+./docs/adr folder is created!
 USAGE
-  $ adr-tool COMMAND
+  $ npx adr-tool create 'Use Markdown Architectural Decision Records'
 ...
 ```
 <!-- usagestop -->

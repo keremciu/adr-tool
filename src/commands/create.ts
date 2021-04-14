@@ -82,9 +82,7 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
 
     const tocFileRaw = fs.readFileSync(tocFilePath, 'utf8')
     const tocFileArray = tocFileRaw.split('\n')
-
     const tocString = `* [ADR-${fileIndex}](${filename}.md) - ${args.title}`
-
     const tocStopIndex = tocFileArray.indexOf('<!-- tocstop -->')
     tocFileArray.splice(tocStopIndex - 1, 0, tocString)
 
