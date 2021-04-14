@@ -37,6 +37,9 @@ create a new decision and log it into docs/adr/README.md file
 USAGE
   $ adr-tool create [TITLE]
 
+ARGUMENTS
+  TITLE  title of the decision
+
 OPTIONS
   -h, --help                                show CLI help
   -t, --ticket=ticket                       technical ticket
