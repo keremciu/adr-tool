@@ -69,7 +69,7 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
     .replace(/:/g, '')
     .replace(/# /g, '')
 
-    const newIndex = getLatestIndex() + 1
+    const newIndex = getLatestIndex()
     const fileIndex = ('000000' + newIndex).substr(3)
     const filename = fileIndex + '-' + cleanTitle
 
