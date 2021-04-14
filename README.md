@@ -20,7 +20,7 @@ You can install it globally (`npm install -g adr-tool`) or use it with [npx](htt
 $ npx adr-tool init
 ./docs/adr folder is created!
 USAGE
-  $ npx adr-tool create 'Use Markdown Architectural Decision Records'
+$ npx adr-tool create 'Use Markdown Architectural Decision Records'
 a decision created on ./docs/adr/0000-use-markdown-architectural-decision-records.md
 ```
 # Commands

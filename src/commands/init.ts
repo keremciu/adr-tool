@@ -35,5 +35,6 @@ export default class Init extends Command {
     fs.copyFile(cliTOCFile, adrDir + 'README.md', () => null)
 
     this.log('./docs/adr folder is created!')
+    this.log("let's create your first decision: `npx adr-tool create 'Use Markdown Architectural Decision Records'`")
   }
 }
