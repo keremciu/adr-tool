@@ -1,14 +1,12 @@
 const fs = require('fs')
-const path = require('path')
 
 import {Command, flags} from '@oclif/command'
 import {error} from '@oclif/errors'
 
-import {adrDir, cliDir} from '../config'
+import {adrDir, cliTemplatesPath} from '../config'
 
-const cliTemplates = path.join(cliDir + '/../templates/')
-const cliTemplateFile = cliTemplates + 'template.md'
-const cliTOCFile = cliTemplates + 'toc.md'
+const cliTemplateFile = cliTemplatesPath + 'template.md'
+const cliTOCFile = cliTemplatesPath + 'toc.md'
 
 export default class Init extends Command {
   static description = 'create docs/adr folder and copies template.md and README.md'
