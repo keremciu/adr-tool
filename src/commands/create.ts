@@ -6,7 +6,7 @@ import {error} from '@oclif/errors'
 import {adrDir} from '../config'
 
 const templateFile = adrDir + '/template.md'
-const tocFile = adrDir + '/README.md'
+const tocFilePath = adrDir + 'README.md'
 const extension = 'md'
 const slicePos = -extension.length
 
@@ -80,7 +80,7 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
     const filePath = adrDir + filename + '.md'
     fs.writeFileSync(filePath, fileData)
 
-    const tocFileRaw = fs.readFileSync(tocFile, 'utf8')
+    const tocFileRaw = fs.readFileSync(tocFilePath, 'utf8')
     const tocFileArray = tocFileRaw.split('\n')
 
     const tocString = `* [ADR-${fileIndex}](${filename}.md) - ${args.title}`
@@ -88,9 +88,7 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
     const tocStopIndex = tocFileArray.indexOf('<!-- tocstop -->')
     tocFileArray.splice(tocStopIndex - 1, 0, tocString)
 
-    const tocPath = adrDir + 'README.md'
-
-    fs.writeFileSync(tocPath, tocFileArray.join('\n'))
+    fs.writeFileSync(tocFilePath, tocFileArray.join('\n'))
 
     this.log('a decision created on ' + filePath)
   }

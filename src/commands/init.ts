@@ -4,10 +4,9 @@ const path = require('path')
 import {Command, flags} from '@oclif/command'
 import {error} from '@oclif/errors'
 
-import {adrDir} from '../config'
+import {adrDir, cliDir} from '../config'
 
-const dirname = __dirname
-const cliTemplates = path.join(dirname + '/../templates/')
+const cliTemplates = path.join(cliDir + '/../templates/')
 const cliTemplateFile = cliTemplates + 'template.md'
 const cliTOCFile = cliTemplates + 'toc.md'
 
