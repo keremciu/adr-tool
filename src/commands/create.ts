@@ -31,13 +31,13 @@ function getLatestIndex(): number {
   return decisionFiles.length
 }
 
-const statusOptions = ['proposed', 'rejected', 'accepted', 'deprecated', 'superseeded']
+const statusOptions = ['accepted', 'deprecated', 'superseeded']
 
 export default class Create extends Command {
   static description = 'create a new decision and log it into docs/adr/README.md file'
 
   static examples = [
-    `$ adr-tool create use-adr-tool
+    `$ adr-tool create 'Use ADR Tool'
 a decision created on ./docs/adr/0001-use-adr-tool.md
 `,
   ]

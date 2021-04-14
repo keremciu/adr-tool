@@ -41,16 +41,16 @@ USAGE
   $ adr-tool create [TITLE]
 
 OPTIONS
-  -h, --help                                                  show CLI help
-  -t, --ticket=ticket                                         technical ticket
-  --status=proposed|rejected|accepted|deprecated|superseeded
+  -h, --help                                show CLI help
+  -t, --ticket=ticket                       technical ticket
+  --status=accepted|deprecated|superseeded
 
 EXAMPLE
-  $ adr-tool create use-adr-tool
+  $ adr-tool create 'Use ADR Tool'
   a decision created on ./docs/adr/0001-use-adr-tool.md
 ```
 
-_See code: [src/commands/create.ts](https://github.com/keremciu/adr-tool/blob/v0.0.6/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/keremciu/adr-tool/blob/v0.0.7/src/commands/create.ts)_
 
 ## `adr-tool help [COMMAND]`
 
@@ -85,7 +85,7 @@ EXAMPLE
   ./docs/adr folder is created!
 ```
 
-_See code: [src/commands/init.ts](https://github.com/keremciu/adr-tool/blob/v0.0.6/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/keremciu/adr-tool/blob/v0.0.7/src/commands/init.ts)_
 
 ## `adr-tool toc`
 
@@ -103,5 +103,5 @@ EXAMPLE
   ./docs/adr/README.md file is created!
 ```
 
-_See code: [src/commands/toc.ts](https://github.com/keremciu/adr-tool/blob/v0.0.6/src/commands/toc.ts)_
+_See code: [src/commands/toc.ts](https://github.com/keremciu/adr-tool/blob/v0.0.7/src/commands/toc.ts)_
 <!-- commandsstop -->
