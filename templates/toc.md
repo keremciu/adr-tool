@@ -1,6 +1,6 @@
 # Architectural Decision Log
 
-This log lists the architectural decisions for {project}.
+This log lists the architectural decisions for this project.
 
 <!-- toc -->
 
