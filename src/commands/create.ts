@@ -90,7 +90,7 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
           name: 'ticket',
           message: 'select superseeded decision',
           type: 'list',
-          choices: getDecisions().map(filename => ({name: filename})),
+          choices: getDecisions().map((filename: string) => ({name: filename})),
         }])
         status = `superseded by [${superseeded.ticket}](${superseeded.ticket})`
       } else {
