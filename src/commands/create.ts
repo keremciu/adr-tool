@@ -2,6 +2,7 @@ const fs = require('fs')
 
 import {Command, flags} from '@oclif/command'
 import {error} from '@oclif/errors'
+import * as inquirer from 'inquirer'
 
 import {adrDir} from '../config'
 
@@ -10,12 +11,18 @@ const tocFilePath = adrDir + 'README.md'
 const extension = 'md'
 const slicePos = -extension.length
 
-function getLatestIndex(): number {
+function getDecisions() {
   const files = fs.readdirSync(adrDir)
 
   const decisionFiles = files.filter((filename: string) =>
     extension === filename.slice(slicePos) && (filename !== 'README.md' && filename !== 'template.md')
   )
+
+  return decisionFiles
+}
+
+function getLatestIndex(): number {
+  const decisionFiles = getDecisions()
 
   if (!(decisionFiles && decisionFiles.length > 0)) {
     return 0
@@ -23,6 +30,8 @@ function getLatestIndex(): number {
 
   return decisionFiles.length
 }
+
+const statusOptions = ['proposed', 'rejected', 'accepted', 'deprecated', 'superseeded']
 
 export default class Create extends Command {
   static description = 'create a new decision and log it into docs/adr/README.md file'
@@ -36,15 +45,17 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
   static flags = {
     help: flags.help({char: 'h'}),
     // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    ticket: flags.string({char: 't', description: 'technical ticket'}),
+    // status flag with enum value
+    status: flags.string({
+      options: statusOptions,
+    }),
   }
 
   static args = [{name: 'title'}]
 
   async run() {
-    const {args} = this.parse(Create)
+    const {args, flags} = this.parse(Create)
 
     if (!fs.existsSync(adrDir)) {
       error('docs/adr folder is not exist, please run `adr-tools init` command first.')
@@ -52,6 +63,39 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
 
     if (!args.title) {
       error('please give a title for the decision')
+    }
+
+    let ticket = flags.ticket
+
+    if (!ticket) {
+      const ticketresponses: any = await inquirer.prompt([{
+        name: 'ticket',
+        message: 'technical story a link or text',
+        type: 'input',
+      }])
+      ticket = ticketresponses.ticket
+    }
+
+    let status = flags.status
+    if (!status) {
+      const statusresponses: any = await inquirer.prompt([{
+        name: 'status',
+        message: 'select status',
+        type: 'list',
+        choices: statusOptions.map(s => ({name: s})),
+      }])
+
+      if (statusresponses.status === 'superseeded') {
+        const superseeded: any = await inquirer.prompt([{
+          name: 'ticket',
+          message: 'select superseeded decision',
+          type: 'list',
+          choices: getDecisions().map(filename => ({name: filename})),
+        }])
+        status = `superseded by [${superseeded.ticket}](${superseeded.ticket})`
+      } else {
+        status = statusresponses.status
+      }
     }
 
     const date = new Date().toLocaleString()
@@ -76,6 +120,8 @@ a decision created on ./docs/adr/0001-use-adr-tool.md
     const fileData = raw
     .replace(/\[short title of solved problem and solution\]/g, newIndex + ' - ' + args.title)
     .replace(/\[YYYY-MM-DD when the decision was last updated\]/g, date)
+    .replace(/\[proposed \| rejected \| accepted \| deprecated \| … \| superseded by \[ADR-0005\]\(0005-example.md\)\]/g, status)
+    .replace(/\[description \| ticket\/issue URL\]/g, ticket)
 
     const filePath = adrDir + filename + '.md'
     fs.writeFileSync(filePath, fileData)

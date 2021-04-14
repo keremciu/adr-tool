@@ -1,7 +1,7 @@
 {
   "name": "adr-tool",
   "description": "easy CLI for ADR docs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Kerem Sevencan @keremciu",
   "bin": {
     "adr-tool": "./bin/run"
@@ -11,6 +11,7 @@
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.2",
+    "inquirer": "^8.0.0",
     "tslib": "^1.14.1"
   },
   "devDependencies": {
