@@ -31,7 +31,7 @@ function getLatestIndex(): number {
   return decisionFiles.length
 }
 
-const statusOptions = ['accepted', 'deprecated', 'superseeded']
+const statusOptions = ['accepted', 'deprecated', 'superseded']
 
 export default class Create extends Command {
   static description = 'create a new decision and log it into docs/adr/README.md file'
@@ -88,14 +88,14 @@ a decision created on ./docs/adr/0000-use-adr-tool.md
         choices: statusOptions.map(s => ({name: s})),
       }])
 
-      if (statusresponses.status === 'superseeded') {
-        const superseeded: any = await inquirer.prompt([{
+      if (statusresponses.status === 'superseded') {
+        const superseded: any = await inquirer.prompt([{
           name: 'ticket',
-          message: 'select superseeded decision',
+          message: 'select superseded decision',
           type: 'list',
           choices: getDecisions().map((filename: string) => ({name: filename})),
         }])
-        status = `superseded by [${superseeded.ticket}](${superseeded.ticket})`
+        status = `superseded by [${superseded.ticket}](${superseded.ticket})`
       } else {
         status = statusresponses.status
       }
