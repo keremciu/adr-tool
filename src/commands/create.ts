@@ -15,7 +15,7 @@ function getDecisions() {
   const files = fs.readdirSync(adrDir)
 
   const decisionFiles = files.filter((filename: string) =>
-    extension === filename.slice(slicePos) && (filename !== 'README.md' && filename !== 'template.md')
+    extension === filename.slice(slicePos) && (filename !== 'README.md' && filename !== 'template.md'),
   )
 
   return decisionFiles
@@ -123,16 +123,16 @@ a decision created on ./docs/adr/0000-use-adr-tool.md
     .replace(/# /g, '')
 
     const newIndex = getLatestIndex()
-    const fileIndex = ('000000' + newIndex).substr(3)
+    const fileIndex = ('000000' + newIndex).slice(3)
     const filename = fileIndex + '-' + cleanTitle
 
-    const fileData = raw
-    .replace(/\[short title of solved problem and solution\]/g, newIndex + ' - ' + title)
-    .replace(/\[YYYY-MM-DD when the decision was last updated\]/g, date)
-    .replace(/\[accepted \| deprecated \| superseded by \[ADR-0005\]\(0005-example.md\)\]/g, status)
+    let fileData = raw
+    .replace(/\[short title of solved problem and solution]/g, newIndex + ' - ' + title)
+    .replace(/\[YYYY-MM-DD when the decision was last updated]/g, date)
+    .replace(/\[accepted \| deprecated \| superseded by \[ADR-0005]\(0005-example.md\)]/g, status)
 
-    if (ticket) raw.replace(/\[description \| ticket\/issue URL\]/g, ticket)
-    if (decidersresponse.list) raw.replace(/\[list everyone involved in the decision\]/g, decidersresponse.list)
+    if (ticket) fileData = fileData.replace(/\[description \| ticket\/issue URL]/g, ticket)
+    if (decidersresponse.list) fileData = fileData.replace(/\[list everyone involved in the decision]/g, decidersresponse.list)
 
     const filePath = adrDir + filename + '.md'
     fs.writeFileSync(filePath, fileData)

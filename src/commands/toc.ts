@@ -21,11 +21,15 @@ export default class Toc extends Command {
   }
 
   async run() {
+    if (!fs.existsSync(adrDir)) {
+      error('docs/adr folder is not exist, please run `adr-tool init` command first.')
+    }
+
     if (fs.existsSync(adrDir + 'README.md')) {
       error('docs/adr/README.md file is already exist.')
     }
 
-    fs.copyFile(cliTOCFile, adrDir + 'README.md', (err: Error) => {
+    fs.copyFile(cliTOCFile, adrDir + 'README.md', fs.constants.COPYFILE_EXCL, (err: Error) => {
       if (err) throw err
     })
 

@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "noEmit": true
+  },
+}
