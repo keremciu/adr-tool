@@ -61,24 +61,24 @@ EXAMPLE
   a decision created on ./docs/adr/0000-use-adr-tool.md
 ```
 
-_See code: [src/commands/create.ts](https://github.com/keremciu/adr-tool/blob/v0.1.1/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/keremciu/adr-tool/blob/v0.2.0/src/commands/create.ts)_
 
 ## `adr-tool help [COMMAND]`
 
-display help for adr-tool
+Display help for adr-tool.
 
 ```
 USAGE
   $ adr-tool help [COMMAND]
 
 ARGUMENTS
-  COMMAND  command to show help for
+  COMMAND  Command to show help for.
 
 OPTIONS
-  --all  see all commands in CLI
+  -n, --nested-commands  Include all nested commands in the output.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.10/src/commands/help.ts)_
 
 ## `adr-tool init`
 
@@ -96,7 +96,7 @@ EXAMPLE
   ./docs/adr folder is created!
 ```
 
-_See code: [src/commands/init.ts](https://github.com/keremciu/adr-tool/blob/v0.1.1/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/keremciu/adr-tool/blob/v0.2.0/src/commands/init.ts)_
 
 ## `adr-tool toc`
 
@@ -114,5 +114,5 @@ EXAMPLE
   ./docs/adr/README.md file is created!
 ```
 
-_See code: [src/commands/toc.ts](https://github.com/keremciu/adr-tool/blob/v0.1.1/src/commands/toc.ts)_
+_See code: [src/commands/toc.ts](https://github.com/keremciu/adr-tool/blob/v0.2.0/src/commands/toc.ts)_
 <!-- commandsstop -->
