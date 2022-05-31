@@ -5,6 +5,7 @@ import {error} from '@oclif/errors'
 import * as inquirer from 'inquirer'
 
 import {adrDir} from '../config'
+import {TEXTS} from '../texts'
 
 const templateFile = adrDir + '/template.md'
 const tocFilePath = adrDir + 'README.md'
@@ -60,7 +61,7 @@ a decision created on ./docs/adr/0000-use-adr-tool.md
     const {argv, flags} = this.parse(Create)
 
     if (!fs.existsSync(adrDir)) {
-      error('docs/adr folder is not exist, please run `adr-tools init` command first.')
+      error(TEXTS.adrFolderIsNotExist)
     }
 
     if (argv.length === 0) {

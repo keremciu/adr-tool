@@ -4,6 +4,7 @@ import {Command, flags} from '@oclif/command'
 import {error} from '@oclif/errors'
 
 import {adrDir, cliTemplatesPath} from '../config'
+import {TEXTS} from '../texts'
 
 const cliTOCFile = cliTemplatesPath + 'toc.md'
 
@@ -22,11 +23,11 @@ export default class Toc extends Command {
 
   async run() {
     if (!fs.existsSync(adrDir)) {
-      error('docs/adr folder is not exist, please run `adr-tool init` command first.')
+      error(TEXTS.adrFolderIsNotExist)
     }
 
     if (fs.existsSync(adrDir + 'README.md')) {
-      error('docs/adr/README.md file is already exist.')
+      error(TEXTS.readmeExists)
     }
 
     fs.copyFile(cliTOCFile, adrDir + 'README.md', fs.constants.COPYFILE_EXCL, (err: Error) => {
