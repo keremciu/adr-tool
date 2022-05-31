@@ -124,7 +124,7 @@ a decision created on ./docs/adr/0000-use-adr-tool.md
     .replace(/# /g, '')
 
     const newIndex = getLatestIndex()
-    const fileIndex = ('000000' + newIndex).slice(3)
+    const fileIndex = ('000000' + newIndex).slice(-4)
     const filename = fileIndex + '-' + cleanTitle
 
     let fileData = raw
