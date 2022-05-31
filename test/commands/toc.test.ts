@@ -1,19 +1,9 @@
 import {expect, test} from '@oclif/test'
 import rewiremock from 'rewiremock'
-import {fs, vol} from 'memfs'
-const realFs = require('fs')
+import {fakeFs} from '../helpers/test-utils'
+import {vol} from 'memfs'
 
-// mock 'fs' lib and use memory for file system manipulations
-// this part can be reusable for other tests
-rewiremock('fs').with({
-  constants: fs.constants,
-  statSync: realFs.statSync,
-  readdirSync: realFs.readdirSync,
-  realpathSync: realFs.realpathSync,
-  readFile: realFs.readFile,
-  existsSync: fs.existsSync,
-  copyFile: fs.copyFile,
-})
+rewiremock('fs').with(fakeFs)
 
 describe('toc command', () => {
   afterEach(() => {

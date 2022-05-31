@@ -1,21 +1,9 @@
 import {expect, test} from '@oclif/test'
 import rewiremock from 'rewiremock'
-import {fs, vol} from 'memfs'
-const realFs = require('fs')
+import {vol} from 'memfs'
+import {fakeFs} from '../helpers/test-utils'
 
-// mock 'fs' lib and use memory for file system manipulations
-// this part can be reusable for other tests
-rewiremock('fs').with({
-  constants: fs.constants,
-  statSync: realFs.statSync,
-  readdirSync: realFs.readdirSync,
-  realpathSync: realFs.realpathSync,
-  readFile: realFs.readFile,
-  readFileSync: fs.readFileSync,
-  existsSync: fs.existsSync,
-  writeFileSync: fs.writeFileSync,
-  copyFile: fs.copyFile,
-})
+rewiremock('fs').with(fakeFs)
 
 rewiremock('inquirer').with({
   prompt: () => Promise.resolve({status: 'accepted'}),
@@ -58,7 +46,10 @@ describe('create command', () => {
   describe('create file', () => {
     beforeEach(() => {
       vol.fromJSON({
-        './docs/adr/README.md': '# Architectural Decision Log\n<!-- toc -->\n<!-- tocstop -->',
+        './docs/adr/README.md': `# Architectural Decision Log
+        <!-- toc -->
+        <!-- tocstop -->
+        `,
         './docs/adr/template.md': 'template file content',
       }, process.cwd() + '/')
       rewiremock.enable()
