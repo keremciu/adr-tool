@@ -43,7 +43,7 @@ describe('create command', () => {
     .it('running create cmd without title provides error')
   })
 
-  describe('create file', () => {
+  describe('create first ADR file', () => {
     beforeEach(() => {
       vol.fromJSON({
         './docs/adr/README.md': `# Architectural Decision Log
@@ -60,7 +60,30 @@ describe('create command', () => {
     .command(['create', 'A big decision'])
     .it('running create cmd creates ADR file with file template', async (output: any, done) => {
       expect(output.stdout).to.contain('a decision created on')
-      expect(vol.readFileSync('./docs/adr/README.md', 'utf-8')).to.contain('a-big-decision.md) - A big decision - [accepted]')
+      expect(vol.readFileSync('./docs/adr/README.md', 'utf-8')).to.contain('[ADR-0000](0000-a-big-decision.md) - A big decision - [accepted]')
+      done()
+    })
+  })
+
+  describe('create second ADR file', () => {
+    beforeEach(() => {
+      vol.fromJSON({
+        './docs/adr/0000-a-big-decision.md': 'A big decision ADR',
+        './docs/adr/README.md': `# Architectural Decision Log
+        <!-- toc -->
+        <!-- tocstop -->
+        `,
+        './docs/adr/template.md': 'template file content',
+      }, process.cwd() + '/')
+      rewiremock.enable()
+    })
+
+    test
+    .stdout()
+    .command(['create', 'A small second decision'])
+    .it('running create cmd creates ADR file with file template', async (output: any, done) => {
+      expect(output.stdout).to.contain('a decision created on')
+      expect(vol.readFileSync('./docs/adr/README.md', 'utf-8')).to.contain('[ADR-0001](0001-a-small-second-decision.md) - A small second decision')
       done()
     })
   })
